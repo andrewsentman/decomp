@@ -272,6 +272,8 @@ class NodeJSR(Node1):
 		return 'JSR '+repr(self.a)
 	def clone(self):
 		return NodeJSR(self.a.clone())
+	def repvar(self):
+		return False
 class NodeByte(Node1):
 	def __repr__(self):
 		return 'm'+repr(self.a)
@@ -385,21 +387,18 @@ class NodeCarry():
 		return False,[]
 	def inputs(self):
 		return [-1]
-class NodeASL(Node2):
+class NodeROL(Node2):
 	def __repr__(self):
-		return 'ASL '+repr(self.a)+' c '+repr(self.b)
+		return 'ROL '+repr(self.a)+' c '+repr(self.b)
 	def clone(self):
-		return NodeASL(self.a.clone(),self.b.clone())
+		return NodeROL(self.a.clone(),self.b.clone())
+	def repvar(self):
+		return False
 class NodeROR(Node2):
 	def __repr__(self):
 		return 'ROR '+repr(self.a)+' c '+repr(self.b)
 	def clone(self):
 		return NodeROR(self.a.clone(),self.b.clone())
-class NodeLSR(Node2):
-	def __repr__(self):
-		return 'LSR '+repr(self.a)+' c '+repr(self.b)
-	def clone(self):
-		return NodeLSR(self.a.clone(),self.b.clone())
 class NodePush(Node1):
 	def __repr__(self):
 		return 'Push '+repr(self.a)
@@ -438,8 +437,8 @@ class NodeNop():
 		return 'NOP'
 	def clone(self):
 		return NodeNop()
-	def replacevars(self,block):
-		return None
+	def _replacevars(self,block):
+		return False,[]
 class NodeRTS():
 	def __repr__(self):
 		return 'RTS'

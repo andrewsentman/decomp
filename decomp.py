@@ -64,7 +64,7 @@ class Block():
 				ops.append(op)
 			newop.append(newops+ops)
 		self.ast=newop
-		#return
+		return
 		while True:
 			for ii in xrange(len(self.ast)):
 				for oi in xrange(len(self.ast[ii])):
@@ -121,7 +121,7 @@ def UtoS(n):
 disasmd={}
 if __name__=="__main__":
 	rom=ROM()
-	with open('C:\\users\\Andrew.Sentman\\workspace\\AIIEmu\\tests\\pacman.nes','rb') as f:
+	with open('pacman.nes','rb') as f:
 		rom.load(f)
 	#rom.prgbanks[0][0x30C3:0x30C8]=[0xA2,0x00,0xA0,0x00,0xA1,0xAA,0xB1,0x55,0x60]
 	labels={rom.read16(0xFFFA):['nmi',CODE,False],rom.read16(0xFFFC):['rst',CODE,False],rom.read16(0xFFFE):['irq',CODE,False]}
